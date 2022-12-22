@@ -9,6 +9,7 @@ HEIGHT = 20  # The height of the cell grid.
 
 
 ALIVE = '#'  # The character representing a living cell.
+
 DEAD = '.'   # The character representing a dead cell.
 
 # (!) Luquinhas, lembrar de alterar ALIVE para '|' e DEAD para '-'.
@@ -28,3 +29,17 @@ for x in range(WIDTH):  # Loop over every possible column.
         else:
             nextCells[(x, y)] = DEAD  # Add a dead cell.
 
+while True:  # Main program loop.
+    # Each iteration of this loop is a step of the simulation.
+
+    print('\n' * 50)  # Separate each step with newlines.
+    cells = copy.deepcopy(nextCells)
+
+    # Print cells on the screen:
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+            print(cells[(x, y)], end='')  # Print the '#' or '.'.
+        print()  # Print a newline at the end of the row.
+    print('Press Ctrl-C to quit.')
+
+    
