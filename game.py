@@ -9,7 +9,6 @@ HEIGHT = 20  # The height of the cell grid.
 
 
 ALIVE = '#'  # The character representing a living cell.
-# (!) Try changing DEAD to '.' or another character:
 DEAD = '.'   # The character representing a dead cell.
 
 # (!) Luquinhas, lembrar de alterar ALIVE para '|' e DEAD para '-'.
