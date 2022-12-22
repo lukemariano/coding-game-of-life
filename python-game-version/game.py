@@ -81,3 +81,11 @@ while True:  # Main program loop.
             else:
                 # Everything else dies or stays dead:
                 nextCells[(x, y)] = DEAD
+    try:
+        time.sleep(1)  # Add a 1 second pause to reduce flickering.
+    except KeyboardInterrupt:
+        print()
+        print("Conway's Game of Life")
+        print('By Lucas Mariano')
+        sys.exit()  # When Ctrl-C is pressed, end the program.
+
