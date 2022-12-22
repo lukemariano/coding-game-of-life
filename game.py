@@ -42,4 +42,32 @@ while True:  # Main program loop.
         print()  # Print a newline at the end of the row.
     print('Press Ctrl-C to quit.')
 
-    
+# Calculate the next step's cells based on current step's cells:
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            # Get the neighboring coordinates of (x, y), even if they
+            # wrap around the edge:
+            left  = (x - 1) % WIDTH
+            right = (x + 1) % WIDTH
+            above = (y - 1) % HEIGHT
+            below = (y + 1) % HEIGHT
+
+            # Count the number of living neighbors:
+            numNeighbors = 0
+            if cells[(left, above)] == ALIVE:
+                numNeighbors += 1  # Top-left neighbor is alive.
+            if cells[(x, above)] == ALIVE:
+                numNeighbors += 1  # Top neighbor is alive.
+            if cells[(right, above)] == ALIVE:
+                numNeighbors += 1  # Top-right neighbor is alive.
+            if cells[(left, y)] == ALIVE:
+                numNeighbors += 1  # Left neighbor is alive.
+            if cells[(right, y)] == ALIVE:
+                numNeighbors += 1  # Right neighbor is alive.
+            if cells[(left, below)] == ALIVE:
+                numNeighbors += 1  # Bottom-left neighbor is alive.
+            if cells[(x, below)] == ALIVE:
+                numNeighbors += 1  # Bottom neighbor is alive.
+            if cells[(right, below)] == ALIVE:
+                numNeighbors += 1  # Bottom-right neighbor is alive.
+
