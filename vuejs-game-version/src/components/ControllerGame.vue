@@ -9,8 +9,8 @@
           title="play"
           @click="send('play')"
         >
-          <v-icon v-show="!isRunning.default">mdi-play</v-icon>
-          <v-icon v-show="isRunning.default">-mdi-pause</v-icon>
+          <v-icon v-show="!isRunning">mdi-play</v-icon>
+          <v-icon v-show="isRunning">mdi-pause</v-icon>
         </button>
       </p>
       <p class="control">
