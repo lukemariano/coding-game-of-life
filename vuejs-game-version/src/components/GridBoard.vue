@@ -229,30 +229,7 @@ export default {
         }
       }
     },
-    /**
-     * Resets and then imports new cells into the gridList
-     * based on the importToken prop that gets passed down
-     * App.vue.
-     * The importToken is a string and its syntax looks
-     * like this:
-     * '[xPos,yPos],[xPos,yPos]...'.
-     */
-    /**
-     * Uses gridList to create an exportToken and
-     * emits it up to App.vue for the user to copy.
-     * Same format as in importToken().
-     */
-    exportSession: function () {
-      let exportToken = "";
-      for (let i = 0; i < this.width; i++) {
-        for (let j = 0; j < this.height; j++) {
-          if (this.gridList[i][j].isAlive) {
-            exportToken += "[" + i + "," + j + "]";
-          }
-        }
-      }
-      this.$emit("exportToken", exportToken);
-    },
+
     /**
      * Updates the current cellcount on each new tick.
      *

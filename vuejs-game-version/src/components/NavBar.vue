@@ -3,10 +3,10 @@
     <v-app-bar color="deep-purple accent-4" dense dark>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-toolbar-title>The Game of Life</v-toolbar-title>
+      <v-toolbar-title>The Game of Life - By Lucas Mariano</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn>
+      <v-btn href="https://github.com/lukemariano" target="_blank">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

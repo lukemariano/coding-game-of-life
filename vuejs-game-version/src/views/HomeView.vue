@@ -3,7 +3,7 @@
     <navbar-app />
     <section class="hero primary-background is-fullheight">
       <!-- Main Content -->
-      <div class="hero-body">
+      <div class="main-content-app">
         <div class="container is-paddingless">
           <div class="columns box is-fullwidth is-gapless">
             <div class="column is-12">
@@ -14,7 +14,6 @@
                     :message="message"
                     :current-speed="speed"
                   />
-                  <app-info v-if="mainComponent == 'infoPage'" />
                 </keep-alive>
               </transition>
             </div>
@@ -83,16 +82,6 @@ export default {
       if (event === "play") {
         this.isRunning = !this.isRunning;
         this.restartInterval();
-      } else if (event === "importSession") {
-        this.isImport = true;
-      } else if (event === "exportSession") {
-        this.updateMessage("exportSession");
-      } else if (event === "slowDown") {
-        this.speed > 100 ? this.changeSpeed(-100) : this.changeSpeed(-20);
-        this.restartInterval();
-      } else if (event === "speedUp") {
-        this.speed < 100 ? this.changeSpeed(20) : this.changeSpeed(100);
-        this.restartInterval();
       } else {
         this.updateMessage(event);
       }
@@ -156,7 +145,7 @@ body {
   color: #fff;
 }
 
-.hero-body {
+.main-content-app {
   align-items: stretch !important;
   padding-top: 18px;
   padding-bottom: 12px;
@@ -165,10 +154,6 @@ body {
 .footer {
   padding: 1rem;
   background-color: transparent;
-}
-
-.navbar-item {
-  color: #ff9766;
 }
 
 .hr {
