@@ -65,9 +65,9 @@ export default {
   padding-bottom: 100%;
 }
 .cell:hover {
-  background-color: rgba(132, 26, 26, 0.6);
+  background-color: rgba(6, 60, 255, 0.6);
 }
 .alive {
-  background-color: #bb4747 !important;
+  background-color: #0256ff !important;
 }
 </style>

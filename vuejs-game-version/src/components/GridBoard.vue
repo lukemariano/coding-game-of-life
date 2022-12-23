@@ -1,5 +1,12 @@
 <template>
   <div>
+    <app-stats
+      :current-tick="currentTick"
+      :cell-count="cellCount"
+      :cells-alive="cellsAlive"
+      :cells-created="cellsCreated"
+      :current-speed="currentSpeed"
+    />
     <div
       class="game-grid columns"
       @mousedown="isMouseDown = true"
@@ -14,6 +21,7 @@
           :x-pos="indexX"
           :y-pos="indexY"
           :is-mouse-down="isMouseDown"
+          @wasUpdated="updateCellCount"
         />
       </div>
     </div>
@@ -22,9 +30,11 @@
 
 <script>
 import Cell from "@/components/CellGrid.vue";
+import Stats from "@/components/StatsApp.vue";
 export default {
   components: {
     "app-cell": Cell,
+    "app-stats": Stats,
   },
   props: {
     message: {
@@ -35,12 +45,21 @@ export default {
       default: "",
       type: String,
     },
+    currentSpeed: {
+      default: 0,
+      type: Number,
+    },
   },
   data() {
     return {
-      width: 40,
-      height: 23,
+      width: 46,
+      height: 20,
       gridList: [],
+      // Stats that get passed down to the app-stats component
+      currentTick: 0,
+      cellCount: 0,
+      cellsAlive: 0,
+      cellsCreated: 0,
       // A prop that gets used by the app-cell component (drag)
       isMouseDown: false,
     };
@@ -57,14 +76,11 @@ export default {
     message: function (val) {
       if (val === "nextStep") {
         this.update();
+        this.currentTick++;
       } else if (val === "redoSession") {
         this.reset();
       } else if (val === "randomSeed") {
         this.randomSeed();
-      } else if (val === "importSession") {
-        this.importSession();
-      } else if (val === "exportSession") {
-        this.exportSession();
       }
     },
   },
@@ -83,11 +99,14 @@ export default {
           this.gridList[i][j] = { isAlive: false };
         }
       }
+      this.cellCount = this.width * this.height;
     },
     /**
      * Changes the 'isAlive' object property
      * of a specific cell to the one requested
      * in the param.
+     *
+     * Usage to describe params
      *
      * @param {number} x - the x position
      * @param {number} y - the y position
@@ -96,6 +115,7 @@ export default {
     setCell: function (x, y, bool) {
       if (this.gridList[x][y].isAlive != bool) {
         this.gridList[x][y].isAlive = bool;
+        this.updateCellCount(bool);
       }
       // let row = this.gridList[x];
       // row.splice(y, 1, {isAlive: true});
@@ -185,6 +205,9 @@ export default {
      * start value.
      */
     reset: function () {
+      this.currentTick = 0;
+      this.cellsAlive = 0;
+      this.cellsCreated = 0;
       this.gridList.forEach((col) => {
         col.forEach((cell) => {
           cell.isAlive = false;
@@ -214,18 +237,6 @@ export default {
      * like this:
      * '[xPos,yPos],[xPos,yPos]...'.
      */
-    importSession: function () {
-      this.reset();
-      let regex = /\[\d+,\d+\]/gm;
-      let tempArr = this.importToken.match(regex);
-      if (tempArr) {
-        tempArr.forEach((element) => {
-          element = element.substring(1, element.length - 1);
-          let xy = element.split(",");
-          this.setCell(xy[0], xy[1], true);
-        });
-      }
-    },
     /**
      * Uses gridList to create an exportToken and
      * emits it up to App.vue for the user to copy.
@@ -241,6 +252,19 @@ export default {
         }
       }
       this.$emit("exportToken", exportToken);
+    },
+    /**
+     * Updates the current cellcount on each new tick.
+     *
+     * @param {boolean} bool - boolean based on cell isAlive status
+     */
+    updateCellCount: function (bool) {
+      if (bool) {
+        this.cellsAlive++;
+        this.cellsCreated++;
+      } else {
+        this.cellsAlive--;
+      }
     },
   },
 };

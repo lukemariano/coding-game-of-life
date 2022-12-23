@@ -9,8 +9,8 @@
           title="play"
           @click="send('play')"
         >
-          <v-icon v-show="isRunning">-mdi-stop</v-icon>
-          <v-icon v-show="!isRunning">mdi-play</v-icon>
+          <v-icon v-show="!isRunning.default">mdi-play</v-icon>
+          <v-icon v-show="isRunning.default">-mdi-pause</v-icon>
         </button>
       </p>
       <p class="control">
@@ -38,9 +38,6 @@ export default {
       default: "gamePage",
       type: String,
     },
-  },
-  data() {
-    return {};
   },
   methods: {
     /**
