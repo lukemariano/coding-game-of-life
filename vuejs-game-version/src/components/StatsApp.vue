@@ -2,16 +2,22 @@
   <div class="box">
     <div class="columns is-fullwidth is-gapless">
       <div class="column is-size-7-mobile is-half-mobile">
-        <strong>Contagem Atual: {{ currentTick }}</strong>
+        <strong class="has-text-white"
+          >Contagem Atual: {{ currentTick }}</strong
+        >
       </div>
       <div class="column is-size-7-mobile is-half-mobile">
-        <strong>Contagem de células: {{ cellCount }}</strong>
+        <strong class="has-text-white"
+          >Contagem de células: {{ cellCount }}</strong
+        >
       </div>
       <div class="column is-size-7-mobile is-half-mobile">
-        <strong>Células Vivas: {{ cellsAlive }}</strong>
+        <strong class="has-text-white">Células Vivas: {{ cellsAlive }}</strong>
       </div>
       <div class="column is-size-7-mobile is-half-mobile">
-        <strong>Células Criadas: {{ cellsCreated }}</strong>
+        <strong class="has-text-white"
+          >Células Criadas: {{ cellsCreated }}</strong
+        >
       </div>
     </div>
   </div>
@@ -46,7 +52,7 @@ export default {
 
 <style scoped>
 .box {
-  background-color: #e7eef5;
+  background-color: rgba(0, 0, 0, 0.862);
 }
 .columns {
   display: flex;

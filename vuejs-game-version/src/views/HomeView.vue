@@ -46,7 +46,7 @@ import Grid from "@/components/GridBoard.vue";
 import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: "App",
+  name: "HomeView",
   components: {
     "app-grid": Grid,
     "app-controller": Controller,
@@ -161,16 +161,5 @@ body {
   border-top: 2px solid #414b5c;
   margin: 0px;
   bottom: 0;
-}
-
-// The transitions used to switch out my page components as well as
-// the import/export modal
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.35s linear;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0;
 }
 </style>
